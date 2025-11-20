@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Data de plecare",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Id": "Cj6mJxVMuk2r_qrKq8hSYA",
+  "Reference": "nfMdlMsEt0uCJQzsTk7Fbg/Cj6mJxVMuk2r_qrKq8hSYA",
+  "ParentRef": "nfMdlMsEt0uCJQzsTk7Fbg/_zd0eaZIPkeY99qLXjW2pQ",
+  "Created": "2025-11-19T14:37:10.3877173Z",
+  "Updated": "2025-11-19T14:37:10.3877173Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.19.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

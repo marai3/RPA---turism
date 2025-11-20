@@ -1,0 +1,13 @@
+﻿{
+  "Name": "rect",
+  "Type": "Element",
+  "Id": "85XZQgBOkEW3T6COMejKhA",
+  "Reference": "nfMdlMsEt0uCJQzsTk7Fbg/85XZQgBOkEW3T6COMejKhA",
+  "ParentRef": "nfMdlMsEt0uCJQzsTk7Fbg/_zd0eaZIPkeY99qLXjW2pQ",
+  "Created": "2025-11-19T14:52:48.4711529Z",
+  "Updated": "2025-11-19T14:52:48.4711529Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.19.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

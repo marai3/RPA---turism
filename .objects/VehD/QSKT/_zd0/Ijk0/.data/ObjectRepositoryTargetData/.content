@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="lb_pCDvCmkiHhJUibL6Nbg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="ba8ad0dd-04da-48f6-bf5e-bf328388e34b" CvElementArea="278, 563, 284, 70" CvType="InputBox" DesignTimeRectangle="334, 587, 86, 21" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='packages-search-bar' tag='SPAN' /&gt;" Guid="78c486c9-4a03-4e86-8d00-68e656b0690f" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="ba8ad0dd-04da-48f6-bf5e-bf328388e34b" CvElementArea="278, 563, 284, 70" CvType="InputBox" DesignTimeRectangle="280, 565, 281, 67" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='packages-departure-autocomplete' tag='INPUT' /&gt;" Guid="1473786f-c9cb-401d-b4f4-1d2beb8ad27f" SearchSteps="Selector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="0147662d4530eb6874da52819310088b.png" xmlns="">0V2b7bz3NrkS4zudKWP3V8Q</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

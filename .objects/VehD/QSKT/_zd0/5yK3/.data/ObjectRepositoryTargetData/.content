@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="4QwLGbSMAUC5OTnbT-F51w" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/home" DesignTimeRectangle="1253, 357, 280, 66" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl type='' class='flex flex-row w-full space-x-16 px-12 py-15 sm:py-20 sm:rounded-md rounded-sm border border-gray-50 md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] font-medium text-main focus:outline-none focus:ring-0 bg-white' parentid='packages-search-bar' tag='DIV' aaname='                                 ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="86970c03-a7fb-4bf3-8a13-cc0d70d9c90d" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="1302, 378, 218, 24" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='packages-occupancy' tag='INPUT' /&gt;" Guid="0a065858-8217-46ad-a61d-410a532abf00" SearchSteps="Selector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="5598f2920a891c75d757c6a633b052fa.png" xmlns="">0Iw0pKSj6dUqDgn3YcZjpIA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

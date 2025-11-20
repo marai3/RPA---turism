@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="9KiD5kKhxUKWaKgTM2aOxA" Reference="nfMdlMsEt0uCJQzsTk7Fbg/sbLiP4z1C0mW2lNSfCXx5A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/home" CVScreenId="337cb7a9-ae04-4c8f-91c1-c017eabc5ac4" CvTextArea="1007, 908, 17, 13" CvTextArgument="22" CvType="Text" DesignTimeRectangle="994, 893, 44, 44" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='22' parentid='packages-search-bar' tag='BUTTON' type='button' /&gt;" Guid="1366175b-b8f1-4e67-b90d-ecec914f2fc5" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="745, 735, 342, 255" FuzzySelectorArgument="&lt;webctrl type='' class='mt-8 grid grid-cols-7 gap-x-6 gap-y-8 text-[15px]' parentid='packages-search-bar' tag='DIV' aaname='                                                      ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='1&amp;#xA;2&amp;#xA;3&amp;#xA;4&amp;#xA;5&amp;#xA;6&amp;#xA;7&amp;#xA;8&amp;#xA;9&amp;#xA;10&amp;#xA;11&amp;#xA;12&amp;#xA;13&amp;#xA;14&amp;#xA;15&amp;#xA;16&amp;#xA;17&amp;#xA;18&amp;#xA;19&amp;#xA;20&amp;#xA;21&amp;#xA;22&amp;#xA;23&amp;#xA;24&amp;#xA;25&amp;#xA;26&amp;#xA;27&amp;#xA;28&amp;#xA;29&amp;#xA;30' /&gt;" Guid="2d5c4134-cab2-4d07-a95f-2476535abed9" SearchSteps="FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="a558da06bde25f573937fcdaf1527c65.png" xmlns="">0SZDeCk4CQEmFInPhJc3BOQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

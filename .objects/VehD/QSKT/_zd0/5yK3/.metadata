@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Persoane pe camera 1 ca…",
+  "Type": "Element",
+  "TaxonomyType": "Input",
+  "Id": "5yK3B8T4JkeXXs7LZ89i_Q",
+  "Reference": "nfMdlMsEt0uCJQzsTk7Fbg/5yK3B8T4JkeXXs7LZ89i_Q",
+  "ParentRef": "nfMdlMsEt0uCJQzsTk7Fbg/_zd0eaZIPkeY99qLXjW2pQ",
+  "Created": "2025-11-19T16:16:41.9836203Z",
+  "Updated": "2025-11-19T16:16:41.9836203Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.19.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

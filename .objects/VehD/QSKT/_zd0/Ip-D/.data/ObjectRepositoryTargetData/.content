@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="qwm7lUATdUKRbm8haDLRdw" Reference="nfMdlMsEt0uCJQzsTk7Fbg/Ip-DcwJjf0u-vAjjDaedwg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="32a0fbff-05ca-4a2d-a31a-8225f537bbdc" CvType="AnyWordGroup" DesignTimeRectangle="882, 536, 68, 17" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl parentid='packages-search-bar' tag='SPAN' type='' class='' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' /&gt;" Guid="cd20c937-bcdc-4f87-8cd7-75b7e393236c" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="402ed6d5-947d-4561-bf6a-4916cca42440" CvElementArea="742, 526, 38, 36" CvType="Icon" DesignTimeRectangle="746, 529, 31, 31" FullSelectorArgument="&lt;webctrl parentid='packages-search-bar' tag='rect' /&gt;" Guid="2ddb3594-b5d7-48a6-a616-66261b48434e" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIFSURBVFhH1ZexbsJADIa79wG69lGqjl06dOMxOnfsg/UROneJkIqqCIQQIEEG5Pa7YHSAo5yTA6WfFHFKzuf/7LMTbmRA/F8xu91OVquVTKdTmUwmMh6PpSiKcDHmHs+Yw1wvSWKqqpLZbBaclmUpy+VSttvtkUPG3OMZc5iLMGxTaRUzn8/DrheLhWu3zMUGW9ZIoVEMO9Kwdwm5gq2mtS1KppjNZhN2RMhzwVqsydpNnIlBPUbr9Xp/Jx+sydpNEToTQzhzRuQU1saHxZEYDhr5vTT4sA71QYymp89hTQUfVroOYlBLKV4LfNG7YoIYlNKk3FH5KURG9/WvE8tnEEP7pmu6QMDjn/nrw/6GH3ziWwliSJGrgjIIAXzGBRPEUGq8V5LIJATwGZd5EJNcRRmFAD7xrQQxHKRWPj9qIS93Iu+jtOv7a2/cTOzbJ+bpthbz9mw7P726iHGliVImTYx7YqbJfYAzCTIPcKfSziDILO3OTa+nILPpkbvT1pyECuogxvIZxAAvrWu/KOMUwUHMoD4hYDAfVwql5qosJ6wdl3PMmRhN1yA+yGEwf1UU1BNO8tvnUGPLGqzVFBGlUYzCQWNHlKJHFHOxwdY6rBatYoAdsTuaFF2TkPNeicUx5h7PmMNceldbNGKSxCg4pH1r2Nk1TrkYa1qZ44mi4hJzWUR+ATkNsJe5Jk/ZAAAAAElFTkSuQmCC" SearchSteps="Selector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="2e09ea26d3cef626bdc12e97407d8443.png" xmlns="">0AMSJNWLrHEuTMbLp8AswzA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">GetText</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

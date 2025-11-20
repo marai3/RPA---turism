@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="E5zYoD1_gUOoJyVhZKGvug" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="bb38383c-1831-4a99-b24f-2c4397963825" CvElementArea="860, 424, 284, 69" CvType="InputBox" DesignTimeRectangle="916, 447, 120, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='                      ' type='' tag='LABEL' class='absolute top-8 z-10 ml-[50px] md:ml-[54px] origin-[0] scale-[.9] transform cursor-pointer md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] text-gray-900 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-8 peer-focus:translate-y-0 peer-focus:scale-[.9] peer-disabled:opacity-50' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Data de plecare' /&gt;" Guid="98462e15-dd26-49fd-a8ba-952c7605d9c6" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="bb38383c-1831-4a99-b24f-2c4397963825" CvElementArea="860, 424, 284, 69" CvType="InputBox" DesignTimeRectangle="862, 426, 281, 67" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='date-start' tag='INPUT' /&gt;" Guid="1fc9c338-a3e0-4e10-bb09-a7b91682b02e" SearchSteps="Selector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="3329fd74beb39b7d4386cc4749668c7e.png" xmlns="">0HILYywzFDE-9BiJ-rPnX0w</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

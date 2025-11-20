@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="8-yKlFwUzUKgDbITPkjuaw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="paralela45.ro" CVScreenId="e4970395-48a4-4ed3-b94d-3efa80b1d2a4" CvElementArea="1037, 553, 68, 33" CvType="InputBox" DesignTimeRectangle="1040, 556, 62, 30" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='2' parentid='chartere-form' tag='SPAN' type='' class='select2-selection__rendered' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='2' /&gt;" Guid="aa3f66dd-7de7-48d7-b5e7-d603bf88afcf" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Paralela 45 | Paralela 45' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="e4970395-48a4-4ed3-b94d-3efa80b1d2a4" CvTextArea="1047, 536, 29, 11" CvTextArgument="Adulti" CvType="Text" DesignTimeRectangle="1039, 536, 64, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Adulti' class='main-filters__label__text' parentid='chartere-form' tag='SPAN' type='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' check:innerText='Adulti' /&gt;" Guid="2c1b3717-9d02-44b5-98ca-46cdc91b13e3" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="cc4db26ab341aaaaee2d8837ca3a79d1.png" xmlns="">0vIrW0IG8JUqFVb35iq6WXw</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

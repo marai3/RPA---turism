@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="UnmYBVS9KkOCdeGsSNuFQQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/home" CVScreenId="08807a67-513c-4cf7-a35b-1c5a5c222828" CvElementArea="1150, 354, 95, 71" CvTextArea="1203, 382, 11, 14" CvTextArgument="7" CvType="Button" DesignTimeRectangle="1206, 378, 7, 24" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='                                              ' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;div&amp;gt;div' parentid='packages-search-bar' tag='DIV' /&gt;" Guid="7387c4bf-c600-430b-bd67-fa2fae932849" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="08807a67-513c-4cf7-a35b-1c5a5c222828" CvElementArea="1150, 354, 95, 71" CvTextArea="1203, 382, 11, 14" CvTextArgument="7" CvType="Button" DesignTimeRectangle="1153, 357, 90, 66" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aria-label='Nopti' tag='BUTTON' type='button' class='flex items-center gap-2 w-full lg:w-[90px] px-12 py-15 sm:py-20 rounded-sm sm:rounded-md border border-gray-50 bg-white' aaname='                                                                                            7                                                   ' matching:aria-label='fuzzy' fuzzylevel:aria-label='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='7' /&gt;" Guid="7663f1b1-9cc9-4c87-9837-6b479d76273a" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="5e5c5a425ac7c55a5b661f23e69f49e4.png" xmlns="">06D_xbXxaG0m812NV_R-9nw</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>
