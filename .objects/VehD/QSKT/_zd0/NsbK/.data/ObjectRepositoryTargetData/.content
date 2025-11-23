@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="Tf7SKfEbWEmtB-irOyeZsg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="_pKxngaO-Ui8x9R2NrSg4g" Reference="nfMdlMsEt0uCJQzsTk7Fbg/NsbKTW3f306lxu8knOQPYQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="https://christiantour.ro/sejur-oferte-vacante/cautare?departure_id=202553&amp;destination_id=4151&amp;ds=2025-11-21&amp;n=7&amp;o=a-a&amp;_gl=1*uzt9n1*_up*MQ..&amp;gclid=CjwKCAiA8vXIBhAtEiwAf3B-g9XmhtfnjafGHj-eNA5s4kxiLhJHl6KHZ-RnVS75AeFnYFfP2xpRgRoCTMQQAvD_BwE&amp;gbraid=0AAAAAoZ2WYs06zDitLfmgdrZr7ckyej11&amp;sid=799512b9-7e50-49a0-a07c-7764cd10fc42" DesignTimeRectangle="8, -1066, 1910, 11610" FullSelectorArgument="&lt;webctrl tag='BODY' /&gt;" Guid="38d08816-90cc-48e6-8d06-a01a67256c89" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte pentru vacante in Dubai, cazare 7 nopti la hoteluri de top' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
-      <imageRef attrName="InformativeScreenshot" originalValue="0bee3db333332bb2e244df0aa89b2ff4.png" xmlns="">0uZk3y-JyTkiLY5srbsBY0A</imageRef>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="https://gemini.google.com/app/81b06add800e45fb?hl=ro" DesignTimeRectangle="8, 181, 1920, 859" FullSelectorArgument="&lt;webctrl tag='MAIN' /&gt;" Guid="4c7cd47d-df82-4834-a699-f8a3ff0a575b" ScopeSelectorArgument="&lt;html app='chrome.exe' url='https://christiantour.ro/*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="84e2c53104dda65813a65e2d60d054cd.png" xmlns="">0ykEM1X0hc0-9QdHfojirQQ</imageRef>
     </TargetAnchorable>
     <x:String x:Key="ActivityType">ExtractData</x:String>
     <p:InArgument x:TypeArguments="x:String" x:Key="ExtractDataSettings" xml:space="preserve">&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;
-	&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Nume'&gt;
-		&lt;IsValidName&gt;true&lt;/IsValidName&gt;
-		&lt;ValidationErrorMessage /&gt;
-		&lt;IsExtra&gt;false&lt;/IsExtra&gt;
-		&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;
-		&lt;Format xsi:type='TextColumnFormat' /&gt;
-	&lt;/Column&gt;
-	&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Nume Url'&gt;
+	&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='Oferta Url'&gt;
 		&lt;IsValidName&gt;true&lt;/IsValidName&gt;
 		&lt;ValidationErrorMessage /&gt;
 		&lt;IsExtra&gt;true&lt;/IsExtra&gt;
 		&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;
 		&lt;Format xsi:type='TextColumnFormat' /&gt;
 	&lt;/Column&gt;
-	&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='Pret'&gt;
+	&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='Oferta'&gt;
+		&lt;IsValidName&gt;true&lt;/IsValidName&gt;
+		&lt;ValidationErrorMessage /&gt;
+		&lt;IsExtra&gt;true&lt;/IsExtra&gt;
+		&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;
+		&lt;Format xsi:type='TextColumnFormat' /&gt;
+	&lt;/Column&gt;
+	&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Pret'&gt;
 		&lt;IsValidName&gt;true&lt;/IsValidName&gt;
 		&lt;ValidationErrorMessage /&gt;
 		&lt;IsExtra&gt;false&lt;/IsExtra&gt;

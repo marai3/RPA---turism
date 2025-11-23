@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="nz9JoFpLDEmNjASsyq56tg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/home" CVScreenId="0fe18c41-bc9f-4e6f-ad15-bda8995ad491" CvElementArea="429, 849, 106, 70" CvTextArea="461, 876, 40, 13" CvTextArgument="Cauta" CvType="Button" DesignTimeRectangle="431, 851, 102, 66" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='           Cauta ' tag='BUTTON' type='submit' class='flex items-center justify-center shrink w-full md:w-fit h-[56px] md:h-[66px] py-18 md:py-[17px] md:px-32 rounded-sm sm:rounded-md text-[15px] leading-[21.9px] text-white focus:outline-none focus:ring-0 bg-primary hover:bg-secondary' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Cauta' /&gt;" Guid="a895d724-e97d-4d47-bfb8-0fb63b1dfd48" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="0fe18c41-bc9f-4e6f-ad15-bda8995ad491" CvElementArea="429, 849, 106, 70" CvTextArea="461, 876, 40, 13" CvTextArgument="Cauta" CvType="Button" DesignTimeRectangle="429, 849, 106, 69" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Cauta' parentid='packages-search-bar' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Cauta' /&gt;" Guid="d32fb1b7-023d-4d37-a8ae-5a87dbb39954" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="3991759b5f098fb78163d158b2f79e07.png" xmlns="">0vGP8pE-Q7UuTgOEVqfMjHQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

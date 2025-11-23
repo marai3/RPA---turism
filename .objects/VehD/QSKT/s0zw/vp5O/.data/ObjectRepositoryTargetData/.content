@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="4AMuLrod20u_Bf-TpRbSsQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" DesignTimeRectangle="1429, 381, 250, 63" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='                                       Recomandate                                                                Ordoneaza dupa                                                                   Recomandate                                                                                                             ' tag='BUTTON' type='' class='w-full flex items-center justify-between space-x-6 xl:space-x-10 p-16 xl:px-16 xl:py-8 xl:rounded-md bg-white xl:bg-[#F4F4F4] xl:border xl:border-gray-50' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Ordoneaza dupa&amp;#xA;&amp;#xA;Recomandate' /&gt;" Guid="b2b23343-e1a3-4c41-9269-2e7c8865430b" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="7f685531-3543-4da0-8643-68c30c00befd" CvElementArea="1427, 379, 253, 66" CvType="InputBox" DesignTimeRectangle="1480, 390, 156, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Ordoneaza dupa' tag='P' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Ordoneaza dupa' /&gt;" Guid="f7b4f0ea-5d52-457a-ac04-c3a8c749150d" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="060fff61c8b50be6b407e965a8442365.png" xmlns="">0bo4Sudzll0-vbdeJ2ZLp8Q</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

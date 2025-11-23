@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="tACWuJdFKkWcR4n1L7gzdg" Reference="nfMdlMsEt0uCJQzsTk7Fbg/7NRzyGfmV0OQ5kU4Ef0rWA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="https://christiantour.ro/sejur-oferte-vacante/sugestii?departure_id=202553&amp;ds=2025-12-23&amp;n=7&amp;o=a-a&amp;_gl=1*1363352*_up*MQ..*_gs*MQ..&amp;gclid=CjwKCAiA_orJBhBNEiwABkdmjMOhaswf-anH1DJGRwXoNvP4-EfJLMT959pz3KcZpMhiUQyhm3v7DhoC9eMQAvD_BwE&amp;gbraid=0AAAAAoZ2WYvszP1a3DDUC76CjlQ7EJAM_&amp;nights=7" ContentHash="hjkCtYNJNEeYdMfUCKG7wg" DesignTimeRectangle="613, 342, 1066, 16805" FullSelectorArgument="&lt;webctrl tag='MAIN' /&gt;" Guid="b30698a2-9fbe-426f-8b74-e5e2207a39c9" Reference="nfMdlMsEt0uCJQzsTk7Fbg/7NRzyGfmV0OQ5kU4Ef0rWA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="8bf02dd091465a46643c7a54b4c89b8b.png" xmlns="">0LtwbGTbr5kWnZewFAD9TBg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">ExtractData</x:String>
+    <p:InArgument x:TypeArguments="x:String" x:Key="ExtractDataSettings" xml:space="preserve">&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;
+	&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Oferta Titlu'&gt;
+		&lt;IsValidName&gt;true&lt;/IsValidName&gt;
+		&lt;ValidationErrorMessage /&gt;
+		&lt;IsExtra&gt;false&lt;/IsExtra&gt;
+		&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;
+		&lt;Format xsi:type='TextColumnFormat' /&gt;
+	&lt;/Column&gt;
+	&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='Oferta Url'&gt;
+		&lt;IsValidName&gt;true&lt;/IsValidName&gt;
+		&lt;ValidationErrorMessage /&gt;
+		&lt;IsExtra&gt;true&lt;/IsExtra&gt;
+		&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;
+		&lt;Format xsi:type='TextColumnFormat' /&gt;
+	&lt;/Column&gt;
+	&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Pret'&gt;
+		&lt;IsValidName&gt;true&lt;/IsValidName&gt;
+		&lt;ValidationErrorMessage /&gt;
+		&lt;IsExtra&gt;false&lt;/IsExtra&gt;
+		&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;
+		&lt;Format xsi:type='TextColumnFormat' /&gt;
+	&lt;/Column&gt;
+&lt;/Table&gt;</p:InArgument>
+    <x:Null x:Key="NextLinkTarget" />
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

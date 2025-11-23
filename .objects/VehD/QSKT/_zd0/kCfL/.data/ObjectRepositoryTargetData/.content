@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="SRrhJ7-5ikGpxZ9aQTxQow" Reference="nfMdlMsEt0uCJQzsTk7Fbg/kCfLr3ainUaAFdJsf8BZ8A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="https://christiantour.ro/sejur-oferte-vacante/sugestii?n=7&amp;o=a-a&amp;_gl=1*773cho*_up*MQ..*_gs*MQ..&amp;gclid=CjwKCAiA24XJBhBXEiwAXElO31yEFmA-jZqtT7Pdk1NY8r17bZqf6LD53-zRvpIicp6nTVS9BGMnyxoC8xYQAvD_BwE&amp;gbraid=0AAAAAoZ2WYuxf6fnsG1aFyKcRE5dTeYy4&amp;nights=7&amp;p=2" DesignTimeRectangle="613, 243, 1066, 33986" FullSelectorArgument="&lt;webctrl tag='MAIN' /&gt;" Guid="93296daf-f7ba-4738-bbe5-c116eab57863" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*Christian Tour*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="c8d9f390204bfadc547cefb3d63fc57b.png" xmlns="">0VfCGs7n0y0Sj6TBwayk90Q</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">ForEachUiElement</x:String>
+    <p:InArgument x:TypeArguments="x:String" x:Key="ExtractDataSettings" xml:space="preserve">&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;
+	&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='CurrentElement'&gt;
+		&lt;IsValidName&gt;true&lt;/IsValidName&gt;
+		&lt;ValidationErrorMessage /&gt;
+		&lt;IsExtra&gt;false&lt;/IsExtra&gt;
+		&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;
+		&lt;Format xsi:type='TextColumnFormat' /&gt;
+	&lt;/Column&gt;
+&lt;/Table&gt;</p:InArgument>
+    <x:Null x:Key="NextLinkTarget" />
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DataExtraction" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="DataExtraction_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DataExtraction" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="DataExtraction_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugage="clr-namespace:UiPath.GSuite.Activities.Gmail.Enums;assembly=UiPath.GSuite.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -132,6 +132,8 @@
       <x:String>UiPath.GSuite.Activities</x:String>
       <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
       <x:String>UiPath.Platform</x:String>
+      <x:String>UiPath.Excel.Activities.Business.Filter</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -244,11 +246,11 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1288,7091" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap:VirtualizedContainerService.HintSize="1288,9656" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="fisierExcel" />
       <Variable x:TypeArguments="upr:IResource" Name="attachment" />
-      <Variable x:TypeArguments="x:Int32" Default="1" Name="counter" />
+      <Variable x:TypeArguments="x:Int32" Default="2" Name="counter" />
       <Variable x:TypeArguments="x:String" Name="LunaAfisata" />
       <Variable x:TypeArguments="x:String" Name="AnulTinta" />
       <Variable x:TypeArguments="x:String" Name="locatie" />
@@ -256,163 +258,199 @@
       <Variable x:TypeArguments="x:Int32" Default="0" Name="pretInterval" />
       <Variable x:TypeArguments="s:DateTime" Name="ziP" />
       <Variable x:TypeArguments="x:String" Name="plecare" />
-      <Variable x:TypeArguments="x:String" Name="ziU" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="ziU" />
       <Variable x:TypeArguments="x:String" Name="Ziua" />
       <Variable x:TypeArguments="x:String" Name="Luna" />
       <Variable x:TypeArguments="sd2:DataTable" Name="tabelOferte" />
+      <Variable x:TypeArguments="x:String" Name="LunaLitere" />
+      <Variable x:TypeArguments="sd2:DataTable" Name="tabelOferteFiltrat" />
+      <Variable x:TypeArguments="sd2:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+      <Variable x:TypeArguments="x:String" Name="numeOferta" />
+      <Variable x:TypeArguments="x:String" Name="emailUtilizator" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="728,6634" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="764,9633" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
       <ueab:ExcelProcessScopeX.Body>
         <ActivityAction x:TypeArguments="ui:IExcelProcess">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="694,6515" sap2010:WorkflowViewState.IdRef="Sequence_13">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="730,9523" sap2010:WorkflowViewState.IdRef="Sequence_13">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="660,6455" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_3" ResizeWindow="None" SensitivityOperation="None" WorkbookPath="C:\Users\Mara\Desktop\ProiectRPA\Date_Utilizatori.csv">
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="696,9463" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_3" ResizeWindow="None" SensitivityOperation="None" WorkbookPath="C:\Users\Mara\Desktop\ProiectRPA\Date_Utilizatori.csv">
               <ueab:ExcelApplicationCard.Body>
                 <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="626,6159" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="662,9167" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ueab:ExcelForEachRowX DisplayName="For Each Excel Row" EmptyRowBehavior="Stop" HasHeaders="False" sap:VirtualizedContainerService.HintSize="592,6099" sap2010:WorkflowViewState.IdRef="ExcelForEachRowX_1" Range="[Excel.Sheet(&quot;Sheet1&quot;)]" SaveAfterEachRow="False">
-                      <ueab:ExcelForEachRowX.Body>
-                        <ActivityAction x:TypeArguments="ue:CurrentRowQuickHandle, x:Int32">
-                          <ActivityAction.Argument1>
-                            <DelegateInArgument x:TypeArguments="ue:CurrentRowQuickHandle" Name="CurrentRow" />
-                          </ActivityAction.Argument1>
-                          <ActivityAction.Argument2>
-                            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-                          </ActivityAction.Argument2>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="558,5883" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Paralela 45  Paralela 45" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="628,9107" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V2">
+                      <uix:NApplicationCard.Body>
+                        <ActivityAction x:TypeArguments="x:Object">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                          </ActivityAction.Argument>
+                          <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Do" sap:VirtualizedContainerService.HintSize="626,8913" sap2010:WorkflowViewState.IdRef="Sequence_3">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_1">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[plecare]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:String">[CurrentRow("Loc plecare").ToString]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_2">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[locatie]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:String">[CurrentRow("Locatie").ToString]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_3">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:Int32">[pers]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:Int32">[CurrentRow("Pesroane").Int32Value]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_4">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:Int32">[pretInterval]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:Int32">[CurrentRow("Pret").Int32Value]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_5">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="s:DateTime">[ziP]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="s:DateTime">[CurrentRow("Prima zi").DateTimeValue]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_6">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[ziU]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:String">[CurrentRow("Ultima zi").ToString]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_8">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[AnulTinta]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:String">[ziP.Year.ToString]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_9">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[Luna]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:String">[ziP.month.ToString]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_10">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:String">[Ziua]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:String">[ziP.day.ToString]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Paralela 45  Paralela 45" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="524,4248" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V2">
-                              <uix:NApplicationCard.Body>
-                                <ActivityAction x:TypeArguments="x:Object">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                                  </ActivityAction.Argument>
-                                  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Do" sap:VirtualizedContainerService.HintSize="522,4054" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                            <ueab:ExcelForEachRowX DisplayName="For Each Excel Row" EmptyRowBehavior="Stop" HasHeaders="True" sap:VirtualizedContainerService.HintSize="592,8822" sap2010:WorkflowViewState.IdRef="ExcelForEachRowX_1" Range="[Excel.Sheet(&quot;Date_Utilizatori&quot;)]" SaveAfterEachRow="False">
+                              <ueab:ExcelForEachRowX.Body>
+                                <ActivityAction x:TypeArguments="ue:CurrentRowQuickHandle, x:Int32">
+                                  <ActivityAction.Argument1>
+                                    <DelegateInArgument x:TypeArguments="ue:CurrentRowQuickHandle" Name="CurrentRow" />
+                                  </ActivityAction.Argument1>
+                                  <ActivityAction.Argument2>
+                                    <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                                  </ActivityAction.Argument2>
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="558,8606" sap2010:WorkflowViewState.IdRef="Sequence_6">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Destinatia'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,246" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Text="[string.Format(&quot;{0}[k(enter)]&quot;, locatie)]" Version="V5">
+                                    <uix:NGoToUrl DisplayName="Go To URL - christiantour.ro" sap:VirtualizedContainerService.HintSize="524,174" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Url="https://christiantour.ro/home?_gl=1*wre0x5*_up*MQ..*_gs*MQ..&amp;gclid=CjwKCAiA24XJBhBXEiwAXElO3zkhdEnp_6m1ixB_Dk0zoWJ-oUN1zOfe_lE5e3RcldqkGybbi0dxLhoC0wwQAvD_BwE&amp;gbraid=0AAAAAoZ2WYuxf6fnsG1aFyKcRE5dTeYy4" Version="V5" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[emailUtilizator]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[CurrentRow("E-mail").ToString]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Email extras: [&quot; + emailUtilizator + &quot;]&quot;]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[plecare]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[CurrentRow("Loc plecare").ToString]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[locatie]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[CurrentRow("Locatie").ToString]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Int32">[pers]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Int32">[CurrentRow("Persoane").Int32Value]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Int32">[pretInterval]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Int32">[CurrentRow("Pret").Int32Value]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="s:DateTime">[ziP]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="s:DateTime">[CurrentRow("Prima zi").DateTimeValue]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Int32">[ziU]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Int32">[CurrentRow("Nr. nopti").Int32Value]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[AnulTinta]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[ziP.Year.ToString]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[Luna]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[ziP.month.ToString]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[Ziua]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[ziP.day.ToString]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,314" sap2010:WorkflowViewState.IdRef="NMouseScroll_3" InteractionMode="HardwareEvents" MovementUnits="10" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                      <uix:NMouseScroll.SearchedElement>
+                                        <uix:SearchedElement>
+                                          <uix:SearchedElement.OutUiElement>
+                                            <OutArgument x:TypeArguments="ui:UiElement" />
+                                          </uix:SearchedElement.OutUiElement>
+                                          <uix:SearchedElement.Target>
+                                            <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="a007f4d4-119e-408b-a1fa-d1af441fe666" ContentHash="1zOF_e2VY06nWy2Zsp8YJg" CvElementArea="52, 476, 853, 68" CvType="InputBox" DesignTimeRectangle="53, 477, 853, 67" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='packages-departure-autocomplete' tag='INPUT' type='text' class='peer block w-full appearance-none sm:rounded-md rounded-sm border border-gray-50 pb-8 pl-[50px] md:pl-[54px] pt-[25px] md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] font-medium text-main focus:border-gray-50 focus:outline-none focus:ring-0 disabled:opacity-50 sm:pb-12 sm:pt-28' aaname='             Plecare din         ' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="031aeffe-2dfd-43f5-baf4-5a79b6b0575c" InformativeScreenshot="fbfbbfe7e228c87d6b501a9b59d127fb.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/Ijk0tDDIokKwm2owe0yaqA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                              <uix:TargetAnchorable.Anchors>
+                                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                                  <uix:Target CVScreenId="a007f4d4-119e-408b-a1fa-d1af441fe666" CvElementArea="52, 476, 853, 68" CvType="InputBox" DesignTimeRectangle="111, 499, 86, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='absolute top-8 z-10 ml-[50px] md:ml-[54px] origin-[0] scale-[.9] transform whitespace-nowrap md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] text-gray-900 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-8 peer-focus:translate-y-0 peer-focus:scale-[.9] peer-disabled:opacity-50' aaname='                      ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Plecare din' /&gt;" Guid="e6c2d759-ac81-42cb-a067-6148494e4da7" SearchSteps="FuzzySelector, CV" />
+                                                </scg:List>
+                                              </uix:TargetAnchorable.Anchors>
+                                            </uix:TargetAnchorable>
+                                          </uix:SearchedElement.Target>
+                                          <uix:SearchedElement.Timeout>
+                                            <InArgument x:TypeArguments="x:Double" />
+                                          </uix:SearchedElement.Timeout>
+                                        </uix:SearchedElement>
+                                      </uix:NMouseScroll.SearchedElement>
+                                    </uix:NMouseScroll>
+                                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Destinatia'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,246" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Text="[string.Format(&quot;{0}[k(enter)]&quot;, locatie)]" Version="V5">
                                       <uix:NTypeInto.Target>
-                                        <uix:TargetAnchorable BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="ba8ad0dd-04da-48f6-bf5e-bf328388e34b" ContentHash="n9vVxQwxxkSUYo257pom_Q" CvElementArea="569, 563, 284, 70" CvType="InputBox" DesignTimeRectangle="625, 587, 66, 21" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Sosire la' parentid='packages-search-bar' tag='SPAN' /&gt;" Guid="fe010667-292b-47fb-a2e4-f2187fb42926" InformativeScreenshot="4c716c8e9d55d35826759d3cc8dff65e.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/CZxYHo3XaEijowHGSb8G2Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                        <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="a007f4d4-119e-408b-a1fa-d1af441fe666" ContentHash="epxt65T5hkKwS71u9WuPQA" CvElementArea="53, 551, 854, 67" CvType="InputBox" DesignTimeRectangle="52, 552, 855, 67" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='packages-destination-autocomplete' tag='INPUT' type='text' class='peer block w-full appearance-none sm:rounded-md rounded-sm border border-gray-50 pb-8 pl-[50px] md:pl-[54px] pt-[25px] md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] font-medium text-main focus:border-gray-50 focus:outline-none focus:ring-0 disabled:opacity-50 sm:pb-12 sm:pt-28' aaname='             Sosire la         ' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="4a396971-a09e-467e-9fc7-1757f9632bcc" InformativeScreenshot="e0660f8e2076da000a61255b1207dfd2.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/CZxYHo3XaEijowHGSb8G2Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                                           <uix:TargetAnchorable.Anchors>
                                             <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                              <uix:Target CVScreenId="ba8ad0dd-04da-48f6-bf5e-bf328388e34b" CvElementArea="569, 563, 284, 70" CvType="InputBox" DesignTimeRectangle="571, 565, 281, 67" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='packages-destination-autocomplete' tag='INPUT' /&gt;" Guid="dc3f76c8-5b40-4d23-a37f-619ee2b47fd3" SearchSteps="Selector, CV" />
+                                              <uix:Target CVScreenId="a007f4d4-119e-408b-a1fa-d1af441fe666" CvElementArea="53, 551, 854, 67" CvType="InputBox" DesignTimeRectangle="111, 574, 66, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='                      ' type='' tag='LABEL' class='absolute top-8 z-10 ml-[50px] md:ml-[54px] origin-[0] scale-[.9] transform whitespace-nowrap md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] text-gray-900 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-8 peer-focus:translate-y-0 peer-focus:scale-[.9] peer-disabled:opacity-50' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Sosire la' /&gt;" Guid="2c57374e-7489-46fa-9799-1f172d517057" SearchSteps="FuzzySelector, CV" />
                                             </scg:List>
                                           </uix:TargetAnchorable.Anchors>
                                         </uix:TargetAnchorable>
                                       </uix:NTypeInto.Target>
                                     </uix:NTypeInto>
-                                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '- Alege orasul -'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,246" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Text="[string.Format(&quot;{0}[k(enter)]&quot;, plecare)]" Version="V5">
+                                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '- Alege orasul -'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,246" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Text="[string.Format(&quot;{0}[k(enter)]&quot;, plecare)]" Version="V5">
                                       <uix:NTypeInto.Target>
-                                        <uix:TargetAnchorable BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="ba8ad0dd-04da-48f6-bf5e-bf328388e34b" ContentHash="lb_pCDvCmkiHhJUibL6Nbg" CvElementArea="278, 563, 284, 70" CvType="InputBox" DesignTimeRectangle="334, 587, 86, 21" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='packages-search-bar' tag='SPAN' /&gt;" Guid="78c486c9-4a03-4e86-8d00-68e656b0690f" InformativeScreenshot="0147662d4530eb6874da52819310088b.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/Ijk0tDDIokKwm2owe0yaqA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                        <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="a007f4d4-119e-408b-a1fa-d1af441fe666" ContentHash="1zOF_e2VY06nWy2Zsp8YJg" CvElementArea="52, 476, 853, 68" CvType="InputBox" DesignTimeRectangle="53, 477, 853, 67" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='packages-departure-autocomplete' tag='INPUT' type='text' class='peer block w-full appearance-none sm:rounded-md rounded-sm border border-gray-50 pb-8 pl-[50px] md:pl-[54px] pt-[25px] md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] font-medium text-main focus:border-gray-50 focus:outline-none focus:ring-0 disabled:opacity-50 sm:pb-12 sm:pt-28' aaname='             Plecare din         ' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="031aeffe-2dfd-43f5-baf4-5a79b6b0575c" InformativeScreenshot="fbfbbfe7e228c87d6b501a9b59d127fb.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/Ijk0tDDIokKwm2owe0yaqA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                                           <uix:TargetAnchorable.Anchors>
                                             <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                              <uix:Target CVScreenId="ba8ad0dd-04da-48f6-bf5e-bf328388e34b" CvElementArea="278, 563, 284, 70" CvType="InputBox" DesignTimeRectangle="280, 565, 281, 67" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='packages-departure-autocomplete' tag='INPUT' /&gt;" Guid="1473786f-c9cb-401d-b4f4-1d2beb8ad27f" SearchSteps="Selector, CV" />
+                                              <uix:Target CVScreenId="a007f4d4-119e-408b-a1fa-d1af441fe666" CvElementArea="52, 476, 853, 68" CvType="InputBox" DesignTimeRectangle="111, 499, 86, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='absolute top-8 z-10 ml-[50px] md:ml-[54px] origin-[0] scale-[.9] transform whitespace-nowrap md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] text-gray-900 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-8 peer-focus:translate-y-0 peer-focus:scale-[.9] peer-disabled:opacity-50' aaname='                      ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Plecare din' /&gt;" Guid="e6c2d759-ac81-42cb-a067-6148494e4da7" SearchSteps="FuzzySelector, CV" />
                                             </scg:List>
                                           </uix:TargetAnchorable.Anchors>
                                         </uix:TargetAnchorable>
                                       </uix:NTypeInto.Target>
                                     </uix:NTypeInto>
-                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Data de plecare'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,194" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Data de plecare'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,194" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
                                       <uix:NClick.Target>
                                         <uix:TargetAnchorable BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="bb38383c-1831-4a99-b24f-2c4397963825" ContentHash="E5zYoD1_gUOoJyVhZKGvug" CvElementArea="860, 424, 284, 69" CvType="InputBox" DesignTimeRectangle="916, 447, 120, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='                      ' type='' tag='LABEL' class='absolute top-8 z-10 ml-[50px] md:ml-[54px] origin-[0] scale-[.9] transform cursor-pointer md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] text-gray-900 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-8 peer-focus:translate-y-0 peer-focus:scale-[.9] peer-disabled:opacity-50' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Data de plecare' /&gt;" Guid="98462e15-dd26-49fd-a8ba-952c7605d9c6" InformativeScreenshot="3329fd74beb39b7d4386cc4749668c7e.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/Cj6mJxVMuk2r_qrKq8hSYA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                                           <uix:TargetAnchorable.Anchors>
@@ -423,35 +461,15 @@
                                         </uix:TargetAnchorable>
                                       </uix:NClick.Target>
                                     </uix:NClick>
-                                    <If Condition="[Luna = &quot;11&quot;]" sap:VirtualizedContainerService.HintSize="488,455" sap2010:WorkflowViewState.IdRef="If_1">
-                                      <If.Then>
-                                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_14">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_11">
-                                            <Assign.To>
-                                              <OutArgument x:TypeArguments="x:String">[Luna]</OutArgument>
-                                            </Assign.To>
-                                            <Assign.Value>
-                                              <InArgument x:TypeArguments="x:String">["NOI"]</InArgument>
-                                            </Assign.Value>
-                                          </Assign>
-                                        </Sequence>
-                                      </If.Then>
-                                      <If.Else>
-                                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                        </Sequence>
-                                      </If.Else>
-                                    </If>
-                                    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[LunaAfisata.Equals(Luna + &quot; &quot; + AnulTinta)]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="488,519" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+                                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[LunaLitere]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[System.Globalization.CultureInfo.CreateSpecificCulture("ro-RO").DateTimeFormat.GetAbbreviatedMonthName(CInt(Luna)).ToUpper().Replace("IA.","IAN").Replace("FE.","FEB")]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[LunaAfisata.Equals(LunaLitere + &quot; &quot; + AnulTinta)]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="524,519" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
                                       <ui:InterruptibleDoWhile.Body>
                                         <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,388" sap2010:WorkflowViewState.IdRef="Sequence_7">
                                           <sap:WorkflowViewStateService.ViewState>
@@ -485,88 +503,18 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ui:InterruptibleDoWhile>
-                                    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="488,989" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-                                      <TryCatch.Try>
-                                        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="486,499" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Paralela 45  Paralela 45" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,439" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="f342b967-2562-4521-bdf9-78d57f8fc3a4" Version="V2">
-                                            <uix:NApplicationCard.Body>
-                                              <ActivityAction x:TypeArguments="x:Object">
-                                                <ActivityAction.Argument>
-                                                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                                                </ActivityAction.Argument>
-                                                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,245" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                                                  <sap:WorkflowViewStateService.ViewState>
-                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                    </scg:Dictionary>
-                                                  </sap:WorkflowViewStateService.ViewState>
-                                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Button'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,185" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f342b967-2562-4521-bdf9-78d57f8fc3a4" Version="V5">
-                                                    <uix:NClick.Target>
-                                                      <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="337cb7a9-ae04-4c8f-91c1-c017eabc5ac4" ContentHash="9KiD5kKhxUKWaKgTM2aOxA" CvTextArea="1007, 908, 17, 13" CvTextArgument="22" CvType="Text" DesignTimeRectangle="994, 893, 44, 44" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='22' parentid='packages-search-bar' tag='BUTTON' type='button' /&gt;" Guid="1366175b-b8f1-4e67-b90d-ecec914f2fc5" InformativeScreenshot="a558da06bde25f573937fcdaf1527c65.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/sbLiP4z1C0mW2lNSfCXx5A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                                                        <uix:TargetAnchorable.Anchors>
-                                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                                            <uix:Target DesignTimeRectangle="745, 735, 342, 255" FuzzySelectorArgument="&lt;webctrl type='' class='mt-8 grid grid-cols-7 gap-x-6 gap-y-8 text-[15px]' parentid='packages-search-bar' tag='DIV' aaname='                                                      ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='1&amp;#xA;2&amp;#xA;3&amp;#xA;4&amp;#xA;5&amp;#xA;6&amp;#xA;7&amp;#xA;8&amp;#xA;9&amp;#xA;10&amp;#xA;11&amp;#xA;12&amp;#xA;13&amp;#xA;14&amp;#xA;15&amp;#xA;16&amp;#xA;17&amp;#xA;18&amp;#xA;19&amp;#xA;20&amp;#xA;21&amp;#xA;22&amp;#xA;23&amp;#xA;24&amp;#xA;25&amp;#xA;26&amp;#xA;27&amp;#xA;28&amp;#xA;29&amp;#xA;30' /&gt;" Guid="2d5c4134-cab2-4d07-a95f-2476535abed9" SearchSteps="FuzzySelector" />
-                                                          </scg:List>
-                                                        </uix:TargetAnchorable.Anchors>
-                                                      </uix:TargetAnchorable>
-                                                    </uix:NClick.Target>
-                                                  </uix:NClick>
-                                                </Sequence>
-                                              </ActivityAction>
-                                            </uix:NApplicationCard.Body>
-                                            <uix:NApplicationCard.OCREngine>
-                                              <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-                                                <ActivityFunc.Argument>
-                                                  <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                                                </ActivityFunc.Argument>
-                                              </ActivityFunc>
-                                            </uix:NApplicationCard.OCREngine>
-                                            <uix:NApplicationCard.TargetApp>
-                                              <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="wQ3YqK69g0uPoChFA8ySow" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGOSURBVDhPlZNNKERRFMdngQUraxsbO2tsWJgokqWahZWNUFPIxhbJAimpYSNNBgn5KGbMyNfC58xIZoyxMSETSUk+ej/nzntMmjc1/nV6r3vO+d1zz73HAliJ+C/wujQ2p8nIfDMa18GwyrUQDYSoyoJKYf3HqrPhyh+yJGhmAcoaCqA2z9ynzOfSLHilJDOnsuC2VCl6uge/D1Yc0FKS9EtueoCtED4/YH0SRtrANQBbs7C3lKwqLaCxCCIn+u5fn/BwA+f7OmBuEMbaobsuDaA+H3YXYLofnuM6JJ1enkwAqrtHbv3fXm5EiuaHwdGl9+H6zFjEBNBaBqFDcE/B+5sRJlJHiUUEvgGr4xCPJZZTAWqXfygV0FJquDJTKsBeYbgyk0kTc37Pl6K1CRhqBmcfeJzweCcAeY5/AMqcvbAjV6nuXjXu9UUHaFoiidCBPKhFuI3KU748NR+mmlzosUGnFZqKoUO+i6P6zvvLOhzCEinjHA2EE0OljvNjxx4VkFTkNOlTVV/5ZZyxfgOX4SiLZG1fmAAAAABJRU5ErkJggg==" InformativeScreenshot="71171edd2da22f38ef51d9645b02c219.jpg" Reference="nfMdlMsEt0uCJQzsTk7Fbg/_zd0eaZIPkeY99qLXjW2pQ" Selector="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" Url="https://christiantour.ro/sejur-oferte-vacante/sugestii?tags=suri-club&amp;sort=price&amp;direction=asc&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=chr_google_performance_pmax_vacante-suri-club-targ-nov25&amp;gad_source=1&amp;gad_campaignid=22352667332&amp;gbraid=0AAAAAoZ2WYs06zDitLfmgdrZr7ckyej11&amp;gclid=CjwKCAiA8vXIBhAtEiwAf3B-g9XmhtfnjafGHj-eNA5s4kxiLhJHl6KHZ-RnVS75AeFnYFfP2xpRgRoCTMQQAvD_BwE" Version="V2">
-                                                <uix:TargetApp.Arguments>
-                                                  <InArgument x:TypeArguments="x:String" />
-                                                </uix:TargetApp.Arguments>
-                                                <uix:TargetApp.WorkingDirectory>
-                                                  <InArgument x:TypeArguments="x:String" />
-                                                </uix:TargetApp.WorkingDirectory>
-                                              </uix:TargetApp>
-                                            </uix:NApplicationCard.TargetApp>
-                                          </uix:NApplicationCard>
-                                        </Sequence>
-                                      </TryCatch.Try>
-                                      <TryCatch.Catches>
-                                        <Catch x:TypeArguments="ui:SelectorNotFoundException" sap2010:WorkflowViewState.IdRef="Catch`1_2">
-                                          <ActivityAction x:TypeArguments="ui:SelectorNotFoundException">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="ui:SelectorNotFoundException" Name="exception" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,226" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;eroare&quot;]" />
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </Catch>
-                                      </TryCatch.Catches>
-                                      <TryCatch.Finally>
-                                        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="486,90" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                        </Sequence>
-                                      </TryCatch.Finally>
-                                    </TryCatch>
-                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '7'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,194" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Button'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,194" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="337cb7a9-ae04-4c8f-91c1-c017eabc5ac4" ContentHash="9KiD5kKhxUKWaKgTM2aOxA" CvTextArea="1007, 908, 17, 13" CvTextArgument="22" CvType="Text" DesignTimeRectangle="994, 893, 44, 44" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='22' parentid='packages-search-bar' tag='BUTTON' type='button' /&gt;" Guid="1366175b-b8f1-4e67-b90d-ecec914f2fc5" InformativeScreenshot="a558da06bde25f573937fcdaf1527c65.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/sbLiP4z1C0mW2lNSfCXx5A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target DesignTimeRectangle="745, 735, 342, 255" FuzzySelectorArgument="&lt;webctrl type='' class='mt-8 grid grid-cols-7 gap-x-6 gap-y-8 text-[15px]' parentid='packages-search-bar' tag='DIV' aaname='                                                      ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='1&amp;#xA;2&amp;#xA;3&amp;#xA;4&amp;#xA;5&amp;#xA;6&amp;#xA;7&amp;#xA;8&amp;#xA;9&amp;#xA;10&amp;#xA;11&amp;#xA;12&amp;#xA;13&amp;#xA;14&amp;#xA;15&amp;#xA;16&amp;#xA;17&amp;#xA;18&amp;#xA;19&amp;#xA;20&amp;#xA;21&amp;#xA;22&amp;#xA;23&amp;#xA;24&amp;#xA;25&amp;#xA;26&amp;#xA;27&amp;#xA;28&amp;#xA;29&amp;#xA;30' /&gt;" Guid="2d5c4134-cab2-4d07-a95f-2476535abed9" SearchSteps="FuzzySelector" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '7'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,194" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
                                       <uix:NClick.Target>
                                         <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="08807a67-513c-4cf7-a35b-1c5a5c222828" ContentHash="UnmYBVS9KkOCdeGsSNuFQQ" CvElementArea="1150, 354, 95, 71" CvTextArea="1203, 382, 11, 14" CvTextArgument="7" CvType="Button" DesignTimeRectangle="1206, 378, 7, 24" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='                                              ' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;div&amp;gt;div' parentid='packages-search-bar' tag='DIV' /&gt;" Guid="7387c4bf-c600-430b-bd67-fa2fae932849" InformativeScreenshot="5e5c5a425ac7c55a5b661f23e69f49e4.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/Q5Fj3ioT5Ea5RoG-HsR1rw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                                           <uix:TargetAnchorable.Anchors>
@@ -577,12 +525,12 @@
                                         </uix:TargetAnchorable>
                                       </uix:NClick.Target>
                                     </uix:NClick>
-                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '7 nopti'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,194" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '7 nopti'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,194" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
                                       <uix:NClick.Target>
                                         <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="97e97884-b9a0-4457-a40e-b681a85933da" ContentHash="CSjzoemTPUijRPL-Wp0lyA" CvTextArea="1140, 708, 53, 19" CvTextArgument="7 nopti" CvType="Text" DesignTimeRectangle="1117, 704, 102, 28" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='7 nopti' parentid='dropdown-button-1' tag='BUTTON' /&gt;" Guid="280e60b9-0bdf-4062-8dc3-c66480be1651" InformativeScreenshot="bb4aa2dc4350e22601af2012c87914cb.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/5yCQaImgZUSuPpkJRiUvkg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                                       </uix:NClick.Target>
                                     </uix:NClick>
-                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Persoane pe camera 1 ca…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,194" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Persoane pe camera 1 ca…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,194" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
                                       <uix:NClick.Target>
                                         <uix:TargetAnchorable BrowserURL="christiantour.ro/home" ContentHash="4QwLGbSMAUC5OTnbT-F51w" DesignTimeRectangle="1253, 357, 280, 66" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl type='' class='flex flex-row w-full space-x-16 px-12 py-15 sm:py-20 sm:rounded-md rounded-sm border border-gray-50 md:text-[17px] text-[15px] md:leading-[24.48px] leading-[21.9px] font-medium text-main focus:outline-none focus:ring-0 bg-white' parentid='packages-search-bar' tag='DIV' aaname='                                 ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="86970c03-a7fb-4bf3-8a13-cc0d70d9c90d" InformativeScreenshot="5598f2920a891c75d757c6a633b052fa.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/5yK3B8T4JkeXXs7LZ89i_Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                                           <uix:TargetAnchorable.Anchors>
@@ -593,93 +541,277 @@
                                         </uix:TargetAnchorable>
                                       </uix:NClick.Target>
                                     </uix:NClick>
-                                    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[counter&lt;= pers]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="488,551" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
-                                      <ui:InterruptibleDoWhile.Body>
-                                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,420" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                    <If Condition="[pers = 1]" sap:VirtualizedContainerService.HintSize="524,1314" sap2010:WorkflowViewState.IdRef="If_2">
+                                      <If.Then>
+                                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="522,245" sap2010:WorkflowViewState.IdRef="Sequence_18">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Adulti'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,185" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
                                             <uix:NClick.Target>
-                                              <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="5d413303-ac61-4620-a361-d9f760befafa" ContentHash="H1LWILk_cUCjeH4Ff0JQMg" CvElementArea="1429, 512, 43, 42" CvType="Icon" DesignTimeRectangle="1432, 514, 38, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='                                                                                                                                    ' parentid='packages-search-bar' tag='BUTTON' type='button' /&gt;" Guid="39b29509-35f0-4b60-bd0c-7b82fd8405a6" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJASURBVFhH5ZhdT8IwFIb99/wkbjXBj0DEmEgkAl4QxYA3IHgFyZGnrkuZ3dauRWl8kiajW895156ennEmifA/hH6s1zKdvshg8Ci9Xl86lzdyftFRjWv6uMczPBuCt9DdbqccI6Lbu5XReCLzxbtsNp+y3W6zp0Rd08e90fhZPcsYxmLDFy+hOGGmhsMnWa5WWa87jGEsNrDlg5NQlq1/dy8P+2VklkLBBraw6RoStULn84WKudnsLeuJBzaxjY86KoW+7g1dXXdlufRfZlewjQ98VVEqlLfEQIylrgMf+KqaWatQ4oYlOeZMFsEXPsti1iqUID9GTNaBT3zb+CGUtMGO/CvwbUtdB0JJxOS434jLMvCNhuKhcCCUNyEhh9But1ULAQ3FWT0QyhHX5MQxiSEUDWgxyYWy2ziPQ4khFNBiZoBcKFNN8RBKLKEUO+by50Ipx6h0QoklFC1o0uRCiYkYuz2WULSYcZoLJSWY9WRTYglFC5o0uVCOL1e0GFtrtVqq2e7p5oqpKT2hySx9MpspmfT0nfAn2a/mxBLK4WNN+MkcoUBMnHxRAkx1EmVeMoUz8CYn/ymiSeLjDthtHF8n/7kMSfwBoUniLx0Nb8mSHCNmsYntqpnU1AoF4oYgZ0fGCAVsYAubZTFZxEmohrRBjiMhNznBGMNYbNhSUBVeQoFEjBOOOM5jigcqHWbJrGe5po97FDs8yxjGFpO5C95CTVg2HFOOIYKZIuZoXNPHPZ5xXeIygoT+JokIFfkCJA3sf1zO6u8AAAAASUVORK5CYII=" InformativeScreenshot="8c7dd9729afe8c081ba2c416a9ff165a.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/MxBBpxt95UuU0Q46t68Q4g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                              <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="20a60c74-b9d6-4e05-966e-4b615e854c44" ContentHash="ZOb-D19aJEWrzMen6vNSBw" CvElementArea="1345, 788, 43, 43" CvType="Icon" DesignTimeRectangle="1359, 802, 16, 16" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='           ' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;svg' parentid='packages-search-bar' tag='svg' /&gt;" Guid="36f5c397-ee72-445d-8d68-cd142335a8f8" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABBSURBVDhPY/hPZTBqIOVg1EDKAdzA3bt3//fw8CALg/TCANzAR48e/V+3bh1ZGKQXBkZypFALjBpIOaCygf//AwDAigyFtzUIugAAAABJRU5ErkJggg==" InformativeScreenshot="9127e9be22398dbca65dda1afe10cef5.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/6e-5BOq2EUqfT40yRZpFjg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                                                 <uix:TargetAnchorable.Anchors>
                                                   <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                                    <uix:Target CVScreenId="5d413303-ac61-4620-a361-d9f760befafa" CvTextArea="1182, 523, 48, 16" CvTextArgument="Adulti" CvType="Text" DesignTimeRectangle="1184, 521, 150, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl isleaf='1' parentid='packages-search-bar' tag='P' type='' class='' aaname='Adulti' matching:isleaf='fuzzy' fuzzylevel:isleaf='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Adulti' /&gt;" Guid="40a611b5-316f-4144-9f7a-d16592721c5c" SearchSteps="FuzzySelector, CV" />
+                                                    <uix:Target CVScreenId="20a60c74-b9d6-4e05-966e-4b615e854c44" CvTextArea="1183, 800, 47, 16" CvTextArgument="Adulti" CvType="Text" DesignTimeRectangle="1184, 798, 150, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl isleaf='1' parentid='packages-search-bar' tag='P' type='' class='' aaname='Adulti' matching:isleaf='fuzzy' fuzzylevel:isleaf='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Adulti' /&gt;" Guid="54a3e857-749d-43a6-bf5a-a35358bac44c" SearchSteps="FuzzySelector, CV" />
                                                   </scg:List>
                                                 </uix:TargetAnchorable.Anchors>
                                               </uix:TargetAnchorable>
                                             </uix:NClick.Target>
                                           </uix:NClick>
-                                          <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_12">
-                                            <Assign.To>
-                                              <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
-                                            </Assign.To>
-                                            <Assign.Value>
-                                              <InArgument x:TypeArguments="x:Int32">[counter+1]</InArgument>
-                                            </Assign.Value>
-                                          </Assign>
                                         </Sequence>
-                                      </ui:InterruptibleDoWhile.Body>
-                                    </ui:InterruptibleDoWhile>
-                                    <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[tabelOferte]" DisplayName="Extract Table Data 'Extract Table Data'" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Nume'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Nume Url'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='Pret'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='article' idx='1' /&gt;&lt;webctrl tag='a' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column2' attr2='href'&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='article' idx='1' /&gt;&lt;webctrl tag='a' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='h2' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column1' attr='fulltext'&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='article' idx='1' /&gt;&lt;webctrl tag='a' idx='2' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,181" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
-                                      <uix:NExtractData.Target>
-                                        <uix:TargetAnchorable BrowserURL="https://christiantour.ro/sejur-oferte-vacante/cautare?departure_id=202553&amp;destination_id=4151&amp;ds=2025-11-21&amp;n=7&amp;o=a-a&amp;_gl=1*uzt9n1*_up*MQ..&amp;gclid=CjwKCAiA8vXIBhAtEiwAf3B-g9XmhtfnjafGHj-eNA5s4kxiLhJHl6KHZ-RnVS75AeFnYFfP2xpRgRoCTMQQAvD_BwE&amp;gbraid=0AAAAAoZ2WYs06zDitLfmgdrZr7ckyej11&amp;sid=799512b9-7e50-49a0-a07c-7764cd10fc42" ContentHash="Tf7SKfEbWEmtB-irOyeZsg" DesignTimeRectangle="8, -1066, 1910, 11610" FullSelectorArgument="&lt;webctrl tag='BODY' /&gt;" Guid="38d08816-90cc-48e6-8d06-a01a67256c89" InformativeScreenshot="0bee3db333332bb2e244df0aa89b2ff4.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/NsbKTW3f306lxu8knOQPYQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte pentru vacante in Dubai, cazare 7 nopti la hoteluri de top' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                                      </uix:NExtractData.Target>
-                                    </uix:NExtractData>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="522,930" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:IfElseIfV2 Condition="[pers&gt;2]" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="488,870" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+                                            <ui:IfElseIfV2.Else>
+                                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,90" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </Sequence>
+                                            </ui:IfElseIfV2.Else>
+                                            <ui:IfElseIfV2.ElseIfs>
+                                              <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True" />
+                                            </ui:IfElseIfV2.ElseIfs>
+                                            <ui:IfElseIfV2.Then>
+                                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,602" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[counter&lt;pers]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="452,542" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
+                                                  <ui:InterruptibleDoWhile.Body>
+                                                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,420" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                                        <uix:NClick.Target>
+                                                          <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="5d413303-ac61-4620-a361-d9f760befafa" ContentHash="H1LWILk_cUCjeH4Ff0JQMg" CvElementArea="1429, 512, 43, 42" CvType="Icon" DesignTimeRectangle="1432, 514, 38, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='                                                                                                                                    ' parentid='packages-search-bar' tag='BUTTON' type='button' /&gt;" Guid="39b29509-35f0-4b60-bd0c-7b82fd8405a6" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJASURBVFhH5ZhdT8IwFIb99/wkbjXBj0DEmEgkAl4QxYA3IHgFyZGnrkuZ3dauRWl8kiajW895156ennEmifA/hH6s1zKdvshg8Ci9Xl86lzdyftFRjWv6uMczPBuCt9DdbqccI6Lbu5XReCLzxbtsNp+y3W6zp0Rd08e90fhZPcsYxmLDFy+hOGGmhsMnWa5WWa87jGEsNrDlg5NQlq1/dy8P+2VklkLBBraw6RoStULn84WKudnsLeuJBzaxjY86KoW+7g1dXXdlufRfZlewjQ98VVEqlLfEQIylrgMf+KqaWatQ4oYlOeZMFsEXPsti1iqUID9GTNaBT3zb+CGUtMGO/CvwbUtdB0JJxOS434jLMvCNhuKhcCCUNyEhh9But1ULAQ3FWT0QyhHX5MQxiSEUDWgxyYWy2ziPQ4khFNBiZoBcKFNN8RBKLKEUO+by50Ipx6h0QoklFC1o0uRCiYkYuz2WULSYcZoLJSWY9WRTYglFC5o0uVCOL1e0GFtrtVqq2e7p5oqpKT2hySx9MpspmfT0nfAn2a/mxBLK4WNN+MkcoUBMnHxRAkx1EmVeMoUz8CYn/ymiSeLjDthtHF8n/7kMSfwBoUniLx0Nb8mSHCNmsYntqpnU1AoF4oYgZ0fGCAVsYAubZTFZxEmohrRBjiMhNznBGMNYbNhSUBVeQoFEjBOOOM5jigcqHWbJrGe5po97FDs8yxjGFpO5C95CTVg2HFOOIYKZIuZoXNPHPZ5xXeIygoT+JokIFfkCJA3sf1zO6u8AAAAASUVORK5CYII=" InformativeScreenshot="8c7dd9729afe8c081ba2c416a9ff165a.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/MxBBpxt95UuU0Q46t68Q4g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                                            <uix:TargetAnchorable.Anchors>
+                                                              <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                                                <uix:Target CVScreenId="5d413303-ac61-4620-a361-d9f760befafa" CvTextArea="1182, 523, 48, 16" CvTextArgument="Adulti" CvType="Text" DesignTimeRectangle="1184, 521, 150, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl isleaf='1' parentid='packages-search-bar' tag='P' type='' class='' aaname='Adulti' matching:isleaf='fuzzy' fuzzylevel:isleaf='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Adulti' /&gt;" Guid="40a611b5-316f-4144-9f7a-d16592721c5c" SearchSteps="FuzzySelector, CV" />
+                                                              </scg:List>
+                                                            </uix:TargetAnchorable.Anchors>
+                                                          </uix:TargetAnchorable>
+                                                        </uix:NClick.Target>
+                                                      </uix:NClick>
+                                                      <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="x:Int32">[counter+1]</InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                    </Sequence>
+                                                  </ui:InterruptibleDoWhile.Body>
+                                                </ui:InterruptibleDoWhile>
+                                              </Sequence>
+                                            </ui:IfElseIfV2.Then>
+                                          </ui:IfElseIfV2>
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Cauta'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="524,194" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable BrowserURL="christiantour.ro/home" CVScreenId="0fe18c41-bc9f-4e6f-ad15-bda8995ad491" ContentHash="nz9JoFpLDEmNjASsyq56tg" CvElementArea="429, 849, 106, 70" CvTextArea="461, 876, 40, 13" CvTextArgument="Cauta" CvType="Button" DesignTimeRectangle="431, 851, 102, 66" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='           Cauta ' tag='BUTTON' type='submit' class='flex items-center justify-center shrink w-full md:w-fit h-[56px] md:h-[66px] py-18 md:py-[17px] md:px-32 rounded-sm sm:rounded-md text-[15px] leading-[21.9px] text-white focus:outline-none focus:ring-0 bg-primary hover:bg-secondary' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Cauta' /&gt;" Guid="a895d724-e97d-4d47-bfb8-0fb63b1dfd48" InformativeScreenshot="3991759b5f098fb78163d158b2f79e07.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/aJbDMNbgmk2J5-ViT69oiQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target CVScreenId="0fe18c41-bc9f-4e6f-ad15-bda8995ad491" CvElementArea="429, 849, 106, 70" CvTextArea="461, 876, 40, 13" CvTextArgument="Cauta" CvType="Button" DesignTimeRectangle="429, 849, 106, 69" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Cauta' parentid='packages-search-bar' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Cauta' /&gt;" Guid="d32fb1b7-023d-4d37-a8ae-5a87dbb39954" SearchSteps="FuzzySelector, CV" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                    <uix:NCheckState DisplayName="Check App State 'Mouse Scroll'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="524,939" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Timeout="30" Version="V5">
+                                      <uix:NCheckState.IfExists>
+                                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,555" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <uix:NMouseScroll KeyModifiers="{x:Null}" DelayBefore="10" Direction="Down" DisplayName="Mouse Scroll" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,314" sap2010:WorkflowViewState.IdRef="NMouseScroll_2" InteractionMode="HardwareEvents" MovementUnits="10" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                            <uix:NMouseScroll.SearchedElement>
+                                              <uix:SearchedElement>
+                                                <uix:SearchedElement.OutUiElement>
+                                                  <OutArgument x:TypeArguments="ui:UiElement" />
+                                                </uix:SearchedElement.OutUiElement>
+                                                <uix:SearchedElement.Target>
+                                                  <uix:TargetAnchorable BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" ContentHash="4AMuLrod20u_Bf-TpRbSsQ" DesignTimeRectangle="1429, 381, 250, 63" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='                                       Recomandate                                                                Ordoneaza dupa                                                                   Recomandate                                                                                                             ' tag='BUTTON' type='' class='w-full flex items-center justify-between space-x-6 xl:space-x-10 p-16 xl:px-16 xl:py-8 xl:rounded-md bg-white xl:bg-[#F4F4F4] xl:border xl:border-gray-50' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Ordoneaza dupa&amp;#xA;&amp;#xA;Recomandate' /&gt;" Guid="b2b23343-e1a3-4c41-9269-2e7c8865430b" InformativeScreenshot="060fff61c8b50be6b407e965a8442365.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/vp5OiXsISEe1bZWT0rBGGw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                                                    <uix:TargetAnchorable.Anchors>
+                                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                                        <uix:Target CVScreenId="7f685531-3543-4da0-8643-68c30c00befd" CvElementArea="1427, 379, 253, 66" CvType="InputBox" DesignTimeRectangle="1480, 390, 156, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Ordoneaza dupa' tag='P' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Ordoneaza dupa' /&gt;" Guid="f7b4f0ea-5d52-457a-ac04-c3a8c749150d" SearchSteps="FuzzySelector, CV" />
+                                                      </scg:List>
+                                                    </uix:TargetAnchorable.Anchors>
+                                                  </uix:TargetAnchorable>
+                                                </uix:SearchedElement.Target>
+                                                <uix:SearchedElement.Timeout>
+                                                  <InArgument x:TypeArguments="x:Double" />
+                                                </uix:SearchedElement.Timeout>
+                                              </uix:SearchedElement>
+                                            </uix:NMouseScroll.SearchedElement>
+                                          </uix:NMouseScroll>
+                                          <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[tabelOferte]" DisplayName="Extract Table Data 'Extract Table Data(1)'" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Oferta Titlu'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='Oferta Url'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Pret'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='article' /&gt;&lt;webctrl tag='a' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='article' /&gt;&lt;webctrl tag='a' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='h2' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='fulltext'&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='article' /&gt;&lt;webctrl tag='a' idx='2' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,181" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="9d579a0a-9477-4809-9b23-5fd64ec81da3" Version="V5">
+                                            <uix:NExtractData.Target>
+                                              <uix:TargetAnchorable BrowserURL="https://christiantour.ro/sejur-oferte-vacante/sugestii?departure_id=202553&amp;ds=2025-12-23&amp;n=7&amp;o=a-a&amp;_gl=1*1363352*_up*MQ..*_gs*MQ..&amp;gclid=CjwKCAiA_orJBhBNEiwABkdmjMOhaswf-anH1DJGRwXoNvP4-EfJLMT959pz3KcZpMhiUQyhm3v7DhoC9eMQAvD_BwE&amp;gbraid=0AAAAAoZ2WYvszP1a3DDUC76CjlQ7EJAM_&amp;nights=7" ContentHash="tACWuJdFKkWcR4n1L7gzdg" DesignTimeRectangle="613, 342, 1066, 16805" FullSelectorArgument="&lt;webctrl tag='MAIN' /&gt;" Guid="b30698a2-9fbe-426f-8b74-e5e2207a39c9" InformativeScreenshot="8bf02dd091465a46643c7a54b4c89b8b.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/7NRzyGfmV0OQ5kU4Ef0rWA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                            </uix:NExtractData.Target>
+                                          </uix:NExtractData>
+                                        </Sequence>
+                                      </uix:NCheckState.IfExists>
+                                      <uix:NCheckState.IfNotExists>
+                                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Sequence>
+                                      </uix:NCheckState.IfNotExists>
+                                      <uix:NCheckState.Target>
+                                        <uix:TargetAnchorable BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" ContentHash="4AMuLrod20u_Bf-TpRbSsQ" DesignTimeRectangle="1429, 381, 250, 63" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='                                       Recomandate                                                                Ordoneaza dupa                                                                   Recomandate                                                                                                             ' tag='BUTTON' type='' class='w-full flex items-center justify-between space-x-6 xl:space-x-10 p-16 xl:px-16 xl:py-8 xl:rounded-md bg-white xl:bg-[#F4F4F4] xl:border xl:border-gray-50' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Ordoneaza dupa&amp;#xA;&amp;#xA;Recomandate' /&gt;" Guid="b2b23343-e1a3-4c41-9269-2e7c8865430b" InformativeScreenshot="060fff61c8b50be6b407e965a8442365.png" Reference="nfMdlMsEt0uCJQzsTk7Fbg/vp5OiXsISEe1bZWT0rBGGw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target CVScreenId="7f685531-3543-4da0-8643-68c30c00befd" CvElementArea="1427, 379, 253, 66" CvType="InputBox" DesignTimeRectangle="1480, 390, 156, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Ordoneaza dupa' tag='P' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Ordoneaza dupa' /&gt;" Guid="f7b4f0ea-5d52-457a-ac04-c3a8c749150d" SearchSteps="FuzzySelector, CV" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NCheckState.Target>
+                                    </uix:NCheckState>
+                                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[tabelOferte]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="524,408" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                                      <ui:ForEachRow.Body>
+                                        <ActivityAction x:TypeArguments="sd2:DataRow">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="sd2:DataRow" Name="CurrentRow" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_14">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Object">[CurrentRow("Pret")]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(CurrentRow("Pret").ToString, "\d+").Value]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </ui:ForEachRow.Body>
+                                    </ui:ForEachRow>
+                                    <ui:FilterDataTable DataTable="[tabelOferte]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="524,195" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[tabelOferteFiltrat]" SelectColumnsMode="Remove">
+                                      <ui:FilterDataTable.Filters>
+                                        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                          <ui:FilterOperationArgument BooleanOperator="And" Operator="LTE">
+                                            <ui:FilterOperationArgument.Column>
+                                              <InArgument x:TypeArguments="x:String">["Pret"]</InArgument>
+                                            </ui:FilterOperationArgument.Column>
+                                            <ui:FilterOperationArgument.Operand>
+                                              <InArgument x:TypeArguments="x:Int32">[pretInterval]</InArgument>
+                                            </ui:FilterOperationArgument.Operand>
+                                          </ui:FilterOperationArgument>
+                                        </scg:List>
+                                      </ui:FilterDataTable.Filters>
+                                      <ui:FilterDataTable.SelectColumns>
+                                        <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                          <x:Null />
+                                        </scg:List>
+                                      </ui:FilterDataTable.SelectColumns>
+                                    </ui:FilterDataTable>
+                                    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="524,443" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_2">
+                                      <ueab:ExcelProcessScopeX.Body>
+                                        <ActivityAction x:TypeArguments="ui:IExcelProcess">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,324" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:AppendWriteCsvFile PathResource="{x:Null}" AddHeaders="True" CsvAction="Write" DataTable="[tabelOferteFiltrat]" Delimitator="Comma" DelimitatorForViewModel="Comma" DisplayName="Write CSV" FilePath="C:/Users/Mara/Desktop/ProiectRPA/Oferte.csv" sap:VirtualizedContainerService.HintSize="416,264" sap2010:WorkflowViewState.IdRef="AppendWriteCsvFile_1" ShouldQuote="True" />
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </ueab:ExcelProcessScopeX.Body>
+                                    </ueab:ExcelProcessScopeX>
+                                    <uga:SendEmailConnections ArgumentAttachmentPaths="{x:Null}" AttachmentPaths="{x:Null}" Attachments="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ReplyTo="{x:Null}" SingleAttachment="{x:Null}" TextBody="{x:Null}" AttachmentInputMode="Builder" AuthScopesInvalid="False" ConnectionId="e5678ae3-9fbb-4948-a71d-0473e6fb71a7" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="524,484" sap2010:WorkflowViewState.IdRef="SendEmailConnections_1" Importance="Normal" InputType="HTML" SaveAsDraft="False" Subject="Oferta vacanta" To="[New String(){emailUtilizator}]" UseConnectionService="True">
+                                      <uga:SendEmailConnections.ArgumentAttachments>
+                                        <scg:List x:TypeArguments="InArgument(upr:IResource)" Capacity="4">
+                                          <InArgument x:TypeArguments="upr:IResource">[LocalResource.FromPath("C:\\Users\\Mara\\Desktop\\ProiectRPA\\Oferte.csv")]</InArgument>
+                                        </scg:List>
+                                      </uga:SendEmailConnections.ArgumentAttachments>
+                                      <uga:SendEmailConnections.AttachmentsBackup>
+                                        <usau:BackupSlot x:TypeArguments="ugage:AttachmentInputMode" StoredValue="Builder">
+                                          <usau:BackupSlot.BackupValues>
+                                            <scg:List x:TypeArguments="x:Object" x:Key="UseExisting" Capacity="1">
+                                              <InArgument x:TypeArguments="scg:IEnumerable(upr:IResource)">[LocalResource.FromPath("C:\\Users\\Mara\\Desktop\\Oferte.csv")]</InArgument>
+                                            </scg:List>
+                                          </usau:BackupSlot.BackupValues>
+                                        </usau:BackupSlot>
+                                      </uga:SendEmailConnections.AttachmentsBackup>
+                                      <uga:SendEmailConnections.Body>
+                                        <InArgument x:TypeArguments="x:String" />
+                                      </uga:SendEmailConnections.Body>
+                                      <uga:SendEmailConnections.InputTypeBackup>
+                                        <usau:BackupSlot x:TypeArguments="ugage:BodyInputType" StoredValue="HTML">
+                                          <usau:BackupSlot.BackupValues>
+                                            <scg:Dictionary x:TypeArguments="ugage:BodyInputType, scg:List(x:Object)" />
+                                          </usau:BackupSlot.BackupValues>
+                                        </usau:BackupSlot>
+                                      </uga:SendEmailConnections.InputTypeBackup>
+                                    </uga:SendEmailConnections>
                                   </Sequence>
                                 </ActivityAction>
-                              </uix:NApplicationCard.Body>
-                              <uix:NApplicationCard.OCREngine>
-                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-                                  <ActivityFunc.Argument>
-                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                                  </ActivityFunc.Argument>
-                                </ActivityFunc>
-                              </uix:NApplicationCard.OCREngine>
-                              <uix:NApplicationCard.TargetApp>
-                                <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="wQ3YqK69g0uPoChFA8ySow" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGOSURBVDhPlZNNKERRFMdngQUraxsbO2tsWJgokqWahZWNUFPIxhbJAimpYSNNBgn5KGbMyNfC58xIZoyxMSETSUk+ej/nzntMmjc1/nV6r3vO+d1zz73HAliJ+C/wujQ2p8nIfDMa18GwyrUQDYSoyoJKYf3HqrPhyh+yJGhmAcoaCqA2z9ynzOfSLHilJDOnsuC2VCl6uge/D1Yc0FKS9EtueoCtED4/YH0SRtrANQBbs7C3lKwqLaCxCCIn+u5fn/BwA+f7OmBuEMbaobsuDaA+H3YXYLofnuM6JJ1enkwAqrtHbv3fXm5EiuaHwdGl9+H6zFjEBNBaBqFDcE/B+5sRJlJHiUUEvgGr4xCPJZZTAWqXfygV0FJquDJTKsBeYbgyk0kTc37Pl6K1CRhqBmcfeJzweCcAeY5/AMqcvbAjV6nuXjXu9UUHaFoiidCBPKhFuI3KU748NR+mmlzosUGnFZqKoUO+i6P6zvvLOhzCEinjHA2EE0OljvNjxx4VkFTkNOlTVV/5ZZyxfgOX4SiLZG1fmAAAAABJRU5ErkJggg==" InformativeScreenshot="71171edd2da22f38ef51d9645b02c219.jpg" Reference="nfMdlMsEt0uCJQzsTk7Fbg/_zd0eaZIPkeY99qLXjW2pQ" Selector="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" Url="https://christiantour.ro/sejur-oferte-vacante/sugestii?tags=suri-club&amp;sort=price&amp;direction=asc&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=chr_google_performance_pmax_vacante-suri-club-targ-nov25&amp;gad_source=1&amp;gad_campaignid=22352667332&amp;gbraid=0AAAAAoZ2WYs06zDitLfmgdrZr7ckyej11&amp;gclid=CjwKCAiA8vXIBhAtEiwAf3B-g9XmhtfnjafGHj-eNA5s4kxiLhJHl6KHZ-RnVS75AeFnYFfP2xpRgRoCTMQQAvD_BwE" Version="V2">
-                                  <uix:TargetApp.Arguments>
-                                    <InArgument x:TypeArguments="x:String" />
-                                  </uix:TargetApp.Arguments>
-                                  <uix:TargetApp.WorkingDirectory>
-                                    <InArgument x:TypeArguments="x:String" />
-                                  </uix:TargetApp.WorkingDirectory>
-                                </uix:TargetApp>
-                              </uix:NApplicationCard.TargetApp>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </uix:NApplicationCard>
+                              </ueab:ExcelForEachRowX.Body>
+                            </ueab:ExcelForEachRowX>
                           </Sequence>
                         </ActivityAction>
-                      </ueab:ExcelForEachRowX.Body>
-                    </ueab:ExcelForEachRowX>
+                      </uix:NApplicationCard.Body>
+                      <uix:NApplicationCard.OCREngine>
+                        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                          <ActivityFunc.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                          </ActivityFunc.Argument>
+                        </ActivityFunc>
+                      </uix:NApplicationCard.OCREngine>
+                      <uix:NApplicationCard.TargetApp>
+                        <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="rVf9hObgSU2RBDZy0_j2LQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGOSURBVDhPlZNNKERRFMdngQUraxsbO2tsWJgokqWahZWNUFPIxhbJAimpYSNNBgn5KGbMyNfC58xIZoyxMSETSUk+ej/nzntMmjc1/nV6r3vO+d1zz73HAliJ+C/wujQ2p8nIfDMa18GwyrUQDYSoyoJKYf3HqrPhyh+yJGhmAcoaCqA2z9ynzOfSLHilJDOnsuC2VCl6uge/D1Yc0FKS9EtueoCtED4/YH0SRtrANQBbs7C3lKwqLaCxCCIn+u5fn/BwA+f7OmBuEMbaobsuDaA+H3YXYLofnuM6JJ1enkwAqrtHbv3fXm5EiuaHwdGl9+H6zFjEBNBaBqFDcE/B+5sRJlJHiUUEvgGr4xCPJZZTAWqXfygV0FJquDJTKsBeYbgyk0kTc37Pl6K1CRhqBmcfeJzweCcAeY5/AMqcvbAjV6nuXjXu9UUHaFoiidCBPKhFuI3KU748NR+mmlzosUGnFZqKoUO+i6P6zvvLOhzCEinjHA2EE0OljvNjxx4VkFTkNOlTVV/5ZZyxfgOX4SiLZG1fmAAAAABJRU5ErkJggg==" InformativeScreenshot="4d37813e420afba22b8f4401a727f088.jpg" Reference="nfMdlMsEt0uCJQzsTk7Fbg/_zd0eaZIPkeY99qLXjW2pQ" Selector="&lt;html app='chrome.exe' title='*Christian Tour*' /&gt;" Url="https://christiantour.ro/home" Version="V2">
+                          <uix:TargetApp.Arguments>
+                            <InArgument x:TypeArguments="x:String" />
+                          </uix:TargetApp.Arguments>
+                          <uix:TargetApp.WorkingDirectory>
+                            <InArgument x:TypeArguments="x:String" />
+                          </uix:TargetApp.WorkingDirectory>
+                        </uix:TargetApp>
+                      </uix:NApplicationCard.TargetApp>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NApplicationCard>
                   </Sequence>
                 </ActivityAction>
               </ueab:ExcelApplicationCard.Body>
             </ueab:ExcelApplicationCard>
-          </Sequence>
-        </ActivityAction>
-      </ueab:ExcelProcessScopeX.Body>
-    </ueab:ExcelProcessScopeX>
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="728,434" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_2">
-      <ueab:ExcelProcessScopeX.Body>
-        <ActivityAction x:TypeArguments="ui:IExcelProcess">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,324" sap2010:WorkflowViewState.IdRef="Sequence_17">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:AppendWriteCsvFile PathResource="{x:Null}" AddHeaders="True" CsvAction="Write" DataTable="[tabelOferte]" Delimitator="Comma" DelimitatorForViewModel="Comma" DisplayName="Write CSV" FilePath="C:/Users/Mara/Desktop/ProiectRPA/Oferte.csv" sap:VirtualizedContainerService.HintSize="416,264" sap2010:WorkflowViewState.IdRef="AppendWriteCsvFile_1" ShouldQuote="True" />
           </Sequence>
         </ActivityAction>
       </ueab:ExcelProcessScopeX.Body>

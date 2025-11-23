@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="ZOb-D19aJEWrzMen6vNSBw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/home" CVScreenId="20a60c74-b9d6-4e05-966e-4b615e854c44" CvElementArea="1345, 788, 43, 43" CvType="Icon" DesignTimeRectangle="1359, 802, 16, 16" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='           ' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;svg' parentid='packages-search-bar' tag='svg' /&gt;" Guid="36f5c397-ee72-445d-8d68-cd142335a8f8" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABBSURBVDhPY/hPZTBqIOVg1EDKAdzA3bt3//fw8CALg/TCANzAR48e/V+3bh1ZGKQXBkZypFALjBpIOaCygf//AwDAigyFtzUIugAAAABJRU5ErkJggg==" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Oferte 2025-2026, circuite, early booking, bilete avion, oferte charter - vacante Christian Tour' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="20a60c74-b9d6-4e05-966e-4b615e854c44" CvTextArea="1183, 800, 47, 16" CvTextArgument="Adulti" CvType="Text" DesignTimeRectangle="1184, 798, 150, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl isleaf='1' parentid='packages-search-bar' tag='P' type='' class='' aaname='Adulti' matching:isleaf='fuzzy' fuzzylevel:isleaf='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Adulti' /&gt;" Guid="54a3e857-749d-43a6-bf5a-a35358bac44c" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="9127e9be22398dbca65dda1afe10cef5.png" xmlns="">0JXIBr8I3EEG_Qa2eXq3Rvg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

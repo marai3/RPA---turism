@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="cE8v5B7iWUSTUC7nZY_hQA" Reference="nfMdlMsEt0uCJQzsTk7Fbg/Q4SiOummS0O6tkSg_5256A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="94ae0479-9ca7-4121-877a-c13c083953ca" CvType="AnyWordGroup" DesignTimeRectangle="930, 439, 492, 33" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='H3' class='font-bold*' /&gt;" Guid="5a32cc50-49d7-4e5f-b8c6-49cd59543ce4" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="c4ad8c53e34f9152623b1622695463cb.png" xmlns="">0tpOL6vC8DUi7-0M0ufI9Dw</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">GetText</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

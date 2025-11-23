@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Melia Grand Hermitage H…",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Id": "Q4SiOummS0O6tkSg_5256A",
+  "Reference": "nfMdlMsEt0uCJQzsTk7Fbg/Q4SiOummS0O6tkSg_5256A",
+  "ParentRef": "nfMdlMsEt0uCJQzsTk7Fbg/_zd0eaZIPkeY99qLXjW2pQ",
+  "Created": "2025-11-22T14:48:08.4611215Z",
+  "Updated": "2025-11-22T14:48:08.4611215Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.19.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}
