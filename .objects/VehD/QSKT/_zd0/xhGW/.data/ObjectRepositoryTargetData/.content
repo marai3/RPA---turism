@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="1-hBnKDbpEah9TbFho8a4g" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="b7d4f03d-2ec4-4780-9926-65d534ed23d2" CvType="AnyWordGroup" DesignTimeRectangle="749, 646, 19, 40" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='text-primary' tag='SPAN' /&gt;" Guid="30b42a3e-5dfc-433e-a5f4-e272f0988991" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="1429, 650, 250, 63" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='                                       Recomandate                                                                Ordoneaza dupa                                                                   Recomandate                                                                                                             ' tag='BUTTON' type='' class='w-full flex items-center justify-between space-x-6 xl:space-x-10 p-16 xl:px-16 xl:py-8 xl:rounded-md bg-white xl:bg-[#F4F4F4] xl:border xl:border-gray-50' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Ordoneaza dupa&amp;#xA;&amp;#xA;Recomandate' /&gt;" Guid="a47a3f75-f38a-4fad-b19a-31e3ff2f3d3d" SearchSteps="FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="84ea191ba336bf0e931bd6436b2e7b7a.png" xmlns="">0rAiMEQWUtUS1E0-UWRyQ7Q</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">GetText</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

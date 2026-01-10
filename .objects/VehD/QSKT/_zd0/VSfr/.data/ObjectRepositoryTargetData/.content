@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="mOi2C860l0a4cxpcs1EqUw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="christiantour.ro/sejur-oferte-vacante/sugestii" CVScreenId="310b4406-c42e-44b2-868c-92160786fad4" CvTextArea="1141, 505, 52, 19" CvTextArgument="2 nopti" CvType="Text" DesignTimeRectangle="1117, 501, 102, 28" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='2 nopti' parentid='dropdown-button-1' tag='BUTTON' /&gt;" Guid="9d49ffc1-0088-49c5-9320-7fa01703a93f" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Vacante ieftine - Cele mai bune vacante si sejururi la buget minim' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="310b4406-c42e-44b2-868c-92160786fad4" CvTextArea="1136, 428, 63, 17" CvTextArgument="Durata" CvType="Text" DesignTimeRectangle="1117, 423, 102, 28" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='dropdown-button-1' tag='P' type='' class='' aaname='Durata' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Durata' /&gt;" Guid="8c68dd09-923d-4dbb-951e-ac16f647186f" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="8e4d02d0dfd7163958599e4de420d2bd.png" xmlns="">0GTyX1UYZzka-1wThYFh-gg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

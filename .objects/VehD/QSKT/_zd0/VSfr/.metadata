@@ -1,0 +1,14 @@
+﻿{
+  "Name": "2 nopti",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "VSfr5siXdUGB5B2iV3-55g",
+  "Reference": "nfMdlMsEt0uCJQzsTk7Fbg/VSfr5siXdUGB5B2iV3-55g",
+  "ParentRef": "nfMdlMsEt0uCJQzsTk7Fbg/_zd0eaZIPkeY99qLXjW2pQ",
+  "Created": "2026-01-10T15:59:10.9095113Z",
+  "Updated": "2026-01-10T15:59:10.9095113Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.19.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.10.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}
